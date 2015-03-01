@@ -1,0 +1,57 @@
+{
+  "name": "future-client",
+  "version": "0.1.0-alpha",
+  "description": "Future client",
+  "main": "./bin/index.js",
+  "scripts": {
+    "prepublish": "coffee -o bin -c lib/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ethanmick/future-client.git"
+  },
+  "keywords": [
+    "net",
+    "tcp",
+    "future",
+    "future-task",
+    "future-client"
+  ],
+  "author": "Ethan Mick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ethanmick/future-client/issues"
+  },
+  "homepage": "https://github.com/ethanmick/future-client",
+  "config": {
+    "blanket": {
+      "pattern": "lib",
+      "shortnames": true,
+      "data-cover-reporter-options": {
+        "shortnames": true
+      },
+      "data-cover-never": "node_modules",
+      "loader": "./node-loaders/coffee-script"
+    },
+    "travis-cov": {
+      "threshold": 50
+    }
+  },
+  "dependencies": {
+    "json-stream": "1.0.0",
+    "q": "1.2.0"
+  },
+  "devDependencies": {
+    "blanket-node": "2.0.0-beta1",    
+    "chai": "2.1.0",
+    "coffee-script": "1.9.1",
+    "coffeelint": "1.9.2",
+    "coffeelint-use-strict": "0.0.1",
+    "coveralls": "2.11.2",
+    "david": "6.1.4",
+    "mocha": "2.1.0",
+    "mocha-lcov-reporter": "0.0.2",
+    "sinon": "1.12.2",
+    "travis-cov": "0.2.5"
+  }
+}
