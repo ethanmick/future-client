@@ -3,11 +3,9 @@
 # 2015
 #
 
-unit:
-	./node_modules/mocha/bin/_mocha --compilers coffee:coffee-script/register ./test/unit
+test:
+	./node_modules/mocha/bin/_mocha --compilers coffee:coffee-script/register ./test
 
-integration:
-	./node_modules/mocha/bin/_mocha --compilers coffee:coffee-script/register ./test/integration
 
 cov:
 	./node_modules/mocha/bin/_mocha --compilers coffee:coffee-script/register --require ./node_modules/blanket-node/bin/index.js -R travis-cov ./test/
@@ -21,6 +19,9 @@ lint:
 
 check-dependencies:
 	./node_modules/david/bin/david.js
+
+compile:
+	./node_modules/coffee-script/bin/coffee --output bin --compile lib/
 
 all:
 	$(MAKE) unit

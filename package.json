@@ -39,7 +39,8 @@
   },
   "dependencies": {
     "json-stream": "1.0.0",
-    "q": "1.2.0"
+    "q": "1.2.0",
+    "uuid": "2.0.1"
   },
   "devDependencies": {
     "blanket-node": "2.0.0-beta1",    
