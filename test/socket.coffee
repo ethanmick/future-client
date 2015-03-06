@@ -21,6 +21,12 @@ describe 'Socket', ->
     beforeEach (done)->
       s = new Socket()
       s.connect(port: 8124)
+      s.on 'removeListener', (n, f)->
+        console.log 'SOMETHING REMOVED', n, f
+
+      s.on 'newListener', (n, f)->
+        console.log 'SOMETHING ADDED', n, f
+
       s.on 'connect', ->
         done()
 
@@ -58,7 +64,7 @@ describe 'Socket', ->
     date = null
     it 'should create a task', (done)->
       date = new Date()
-      date.setMinutes(date.getMinutes() + 1)
+      date.setSeconds(date.getSeconds() + 20)
       task =
         name: name
         time: date
@@ -76,6 +82,30 @@ describe 'Socket', ->
         task.opts.some.should.equal 'data'
         done()
 
+    it 'should get a task to execute', (done)->
+      @timeout(22000)
+
+      console.log 'WTF', s.listeners('task')
+
+      console.log 'before'
+      s.on 'task', (task)->
+        console.log 'GOT TASK', task
+        task.name.should.equal name
+        done()
+
+      s.on 'data', (data)->
+        console.log 'DATA TEST', data
+
+      s.on 'error', (err)->
+        console.log 'ERROR', err
+
+      console.log 'after'
+      console.log 'TESTING', s.listeners('task')[0].toString()
+
     afterEach (done)->
-      s.end()
-      s.on 'close', -> done()
+      console.log 'AFTER'
+      s.on 'close', ->
+        console.log 'CLOSE'
+        s = null
+        done()
+      s.destroy()
