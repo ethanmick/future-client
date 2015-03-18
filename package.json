@@ -2,7 +2,7 @@
   "name": "future-client",
   "version": "0.1.0-alpha",
   "description": "Future client",
-  "main": "./bin/index.js",
+  "main": "./bin/client.js",
   "scripts": {
     "prepublish": "coffee -o bin -c lib/"
   },
