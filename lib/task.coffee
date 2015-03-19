@@ -31,7 +31,7 @@ class Task
       time: date
       opts: opts.opts
     })
-    t.schedule() if autoSchedule
+    return t.schedule() if autoSchedule
     t
 
   @inSeconds: (seconds, opts, autoSchedule)->

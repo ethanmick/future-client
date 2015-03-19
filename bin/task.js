@@ -44,7 +44,7 @@
         opts: opts.opts
       });
       if (autoSchedule) {
-        t.schedule();
+        return t.schedule();
       }
       return t;
     };
