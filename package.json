@@ -1,8 +1,8 @@
 {
   "name": "future-client",
-  "version": "0.1.0-alpha",
+  "version": "0.2.0",
   "description": "Future client",
-  "main": "./bin/client.js",
+  "main": "./bin/index.js",
   "scripts": {
     "prepublish": "coffee -o bin -c lib/"
   },

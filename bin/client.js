@@ -14,17 +14,22 @@
   DEFAULT_PORT = 8124;
 
   Client = (function() {
-    function Client(opts1) {
+    function Client() {}
+
+    Client.prototype.connect = function(opts) {
       var base, base1;
-      this.opts = opts1 != null ? opts1 : {};
+      if (this.socket) {
+        return;
+      }
+      this.opts = opts || {};
       if ((base = this.opts).port == null) {
         base.port = DEFAULT_PORT;
       }
       if ((base1 = this.opts).baseURL == null) {
         base1.baseURL = "http://localhost:" + this.opts.port;
       }
-      this.socket = SocketIO("http://localhost:" + this.opts.port);
-    }
+      return this.socket = SocketIO("http://localhost:" + this.opts.port);
+    };
 
     Client.prototype._send = function(opts) {
       var deferred;
@@ -66,6 +71,6 @@
 
   })();
 
-  module.exports = Client;
+  module.exports = new Client();
 
 }).call(this);
