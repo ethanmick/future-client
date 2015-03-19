@@ -12,7 +12,9 @@ DEFAULT_PORT = 8124
 
 class Client
 
-  constructor: (@opts = {})->
+  connect: (opts)->
+    return if @socket
+    @opts = opts or {}
     @opts.port ?= DEFAULT_PORT
     @opts.baseURL ?= "http://localhost:#{@opts.port}"
     @socket = SocketIO("http://localhost:#{@opts.port}")
@@ -45,4 +47,4 @@ class Client
       json: yes
     })
 
-module.exports = Client
+module.exports = new Client()
