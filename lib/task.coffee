@@ -23,6 +23,19 @@ class Task
   schedule: ->
     Client.schedule(@toObject())
 
+  @inMilliseconds: (ms, opts = {}, autoSchedule = no)->
+    date = new Date()
+    date.setMilliseconds(date.getMilliseconds() + ms)
+    t = new this({
+      name: opts.name
+      time: date
+      opts: opts.opts
+    })
+    t.schedule() if autoSchedule
+    t
+
+  @inSeconds: (seconds, opts, autoSchedule)->
+    @inMilliseconds(seconds * 1000, opts, autoSchedule)
 
 
 module.exports = Task

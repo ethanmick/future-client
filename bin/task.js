@@ -28,6 +28,31 @@
       return Client.schedule(this.toObject());
     };
 
+    Task.inMilliseconds = function(ms, opts, autoSchedule) {
+      var date, t;
+      if (opts == null) {
+        opts = {};
+      }
+      if (autoSchedule == null) {
+        autoSchedule = false;
+      }
+      date = new Date();
+      date.setMilliseconds(date.getMilliseconds() + ms);
+      t = new this({
+        name: opts.name,
+        time: date,
+        opts: opts.opts
+      });
+      if (autoSchedule) {
+        t.schedule();
+      }
+      return t;
+    };
+
+    Task.inSeconds = function(seconds, opts, autoSchedule) {
+      return this.inMilliseconds(seconds * 1000, opts, autoSchedule);
+    };
+
     return Task;
 
   })();

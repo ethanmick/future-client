@@ -24,3 +24,13 @@ describe 'Task', ->
     Client.connect()
     t = new Task(name: 'name', time: new Date())
     t.schedule()
+
+  it 'should go in ms', ->
+    Task.inMilliseconds(1000)
+
+  it 'should have the options', ->
+    t = Task.inMilliseconds(1000, name: 'derp')
+    t.name.should.equal 'derp'
+
+  it 'should work in seconds', ->
+    Task.inSeconds(1)
